@@ -1,0 +1,158 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  gap: 2rem;
+}
+
+.header {
+  background-color: orange;
+}
+
+.nav-icon {
+  font-size: 10rem;
+}
+.nav-header {
+  font-size: 5.2rem;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem;
+}
+
+.form-section {
+  background-color: rgba(165, 42, 42, 0.719);
+}
+
+.form-header {
+  font-size: 3rem;
+}
+.quontity {
+  font-size: 2.4rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+.item-name {
+  height: 4rem;
+  width: 25rem;
+  padding: 2rem;
+  border: none;
+  border-radius: 11px;
+  font-size: 2.4rem;
+}
+.btn {
+  width: 10rem;
+  height: 4rem;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: rgba(165, 42, 42, 0.26);
+  color: #fff;
+}
+.list-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 4rem;
+
+  gap: 2rem;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item-section {
+  background-color: rgba(95, 35, 35, 0.74);
+  height: 54rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem;
+}
+.check {
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+}
+.item-quontity {
+  font-size: 2.5rem;
+  color: #fff;
+}
+.item-name-list {
+  font-size: 2.5rem;
+  color: #fff;
+}
+.item-icon {
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.underLine {
+  text-decoration: line-through;
+}
+
+.footer {
+  background-color: aquamarine;
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-p {
+  font-size: 3rem;
+}
+.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.sort-select {
+  padding: 1rem;
+  border-radius: 11px;
+  background-color: orange;
+  text-align: center;
+}
+
+.btn-delete {
+  width: 16rem;
+  height: 3.5rem;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  background-color: orange;
+  text-align: center;
+}
