@@ -23,43 +23,53 @@ const initialFriends = [
 ];
 
 function App() {
-  const [status, setStatus] = useState(null);
+  const [friend, setFriend] = useState(null);
+  const [showFriendForm, setShowFriendForm] = useState(false);
+  const [friendId, setFriendId] = useState(null);
 
-  function ShowAndHideBillForm(friend) {
-    setStatus((currentStatus) =>
-      currentStatus?.id === friend.id ? null : friend
-    );
+  function HandeShowForm() {
+    setShowFriendForm((showFriendForm) => !showFriendForm);
+  }
+
+  function HandleClickFriend(id) {
+    const selected = initialFriends.find((fr) => fr.id === id);
+    setFriend((curr) => (friendId !== id ? selected : null));
+
+    setFriendId((curr) => (curr !== id ? id : null));
   }
 
   return (
     <div className="container app-body">
       <div>
-        <FriendList ShowAndHideBillForm={ShowAndHideBillForm} status={status} />
-        <AddFriend />
+        <FriendList HandleClickFriend={HandleClickFriend} friendId={friendId} />
+        {showFriendForm && <AddFriend />}
+        <Button handleOnClick={HandeShowForm} classButon={"btnuser btnAdd"}>
+          {!showFriendForm ? "Add Friend" : "Close"}
+        </Button>
       </div>
       <div>
-        <SplitTheBill status={status} />
+        <SplitTheBill friend={friend} friendId={friendId} />
       </div>
     </div>
   );
 }
 
-function FriendList({ status, ShowAndHideBillForm }) {
+function FriendList({ HandleClickFriend, friendId }) {
   return (
     <ul className="list-firend">
       {initialFriends.map((friend) => (
         <Friend
           objFriend={friend}
+          HandleClickFriend={HandleClickFriend}
+          friendId={friendId}
           key={friend.id}
-          ShowAndHideBillForm={ShowAndHideBillForm}
-          status={status}
         />
       ))}
     </ul>
   );
 }
 
-function Friend({ objFriend, ShowAndHideBillForm, status }) {
+function Friend({ objFriend, HandleClickFriend, friendId }) {
   return (
     <li className="userList">
       <img
@@ -73,9 +83,9 @@ function Friend({ objFriend, ShowAndHideBillForm, status }) {
       </div>
       <Button
         classButon="btnuser"
-        onClickFunction={ShowAndHideBillForm(objFriend)}
+        handleOnClick={() => HandleClickFriend(objFriend.id)}
       >
-        {status ? "Close" : "Select"}
+        {friendId === objFriend.id ? "Close" : "Select"}
       </Button>
     </li>
   );
@@ -97,29 +107,31 @@ function AddFriend() {
   );
 }
 
-function Button({ classButon, onClickFunction, children }) {
+function Button({ handleOnClick, classButon, children }) {
   return (
-    <button onClick={onClickFunction} className={classButon}>
+    <button onClick={handleOnClick} className={classButon}>
       {children}
     </button>
   );
 }
 
-function SplitTheBill({ status }) {
+function SplitTheBill({ friend, friendId }) {
   return (
-    status && (
+    friendId && (
       <div className="bill">
-        <h1>Split the Bill with Sara</h1>
+        <h1>Split the Bill with {friend.name}</h1>
         <div className="bill-body">
           <form className="form-body-bill">
             <BillInputFiend typeInput="text">💰 Bill value</BillInputFiend>
             <BillInputFiend typeInput="text">👸 Your Expense</BillInputFiend>
-            <BillInputFiend typeInput="text">👸 Sarah Expense</BillInputFiend>
+            <BillInputFiend typeInput="text">
+              🧍 {friend.name} Expense
+            </BillInputFiend>
             <div className="bill-values">
               <label className="label-add">😊 Who is paying the bill?</label>
               <select className="input-add">
                 <option value={1}>You</option>
-                <option value={2}>Friend</option>
+                <option value={2}>{friend.name}</option>
               </select>
             </div>
             <Button classButon={"btnuser btnAdd"}>Split The Bill</Button>
